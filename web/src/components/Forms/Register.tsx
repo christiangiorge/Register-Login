@@ -27,11 +27,11 @@ export function Register() {
 
     const [matchPassword, setMatchPassword] = useState("")
 
-    const secureMatchPassword = (matchPassword: React.ChangeEvent<HTMLInputElement>) => {
-        setMatchPassword({
-           matchPassword
-        })
-    }
+    // const secureMatchPassword = (matchPassword: React.ChangeEvent<HTMLInputElement>) => {
+    //     setMatchPassword({
+    //        matchPassword
+    //     })
+    // }
 
 
     
@@ -44,14 +44,19 @@ export function Register() {
 
 
             <label>
-                <form className="flex flex-col items-center">
-                    <input type="text" placeholder="Your Name Complete" className="block peer rounded-[5px] border-[#AEBBCD] outline-none w-[25rem] mb-5 "/>
+                <form className="flex flex-col items-center outline-none">
+                    <input type="text" placeholder="Your Name Complete" className="block peer rounded-[5px] border-[#AEBBCD] w-[25rem] mb-5 focus:outline-none focus:ring-1"/>
 
-                    <input type="email" placeholder="Confirm your Email ID" className="block peer rounded-[5px] border-[#AEBBCD] outline-none w-[25rem] mb-5 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500"/>
+                    <input type="email" placeholder="Confirm your Email ID" className="block peer rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500"/>
 
-                    <input type="password" placeholder="New Password" onChange={(passwordInput) => secureText(passwordInput)} className="block rounded-[5px] border-[#AEBBCD] outline-none w-[25rem] mb-5"/>
+                    <input 
+                        type="password"
+                        placeholder="New Password"
+                        onChange={(passwordInput) => 
+                            secureText(passwordInput)}
+                        className={`block rounded-[5px] border-[#AEBBCD] outline- w-[25rem] mb-5 ${Object.values(validatePassword).map(mapValidatePasswordBoolean => mapValidatePasswordBoolean == false ? "focus:outline-none focus:border-pink-500 focus:ring-pink-500 text-pink-600 focus-ring-1" : "")}`}/>
                     
-                    <input type="password" placeholder="Confirm Password" onChange={(matchPassword) => secureMatchPassword=(matchPassword)} className="block peer rounded-[5px] border-[#AEBBCD] outline-none w-[25rem] mb-5"/>
+                    <input type="password" placeholder="Confirm Password" className="block peer rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5"/>
 
                     <button className="rounded-full bg-[#3D5FD9] text-[#F5F7FF] w-[25rem] p-3 hover:bg-[#2347C5] mb-5">SIGN UP</button>
 
