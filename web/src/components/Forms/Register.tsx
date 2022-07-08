@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import {
     regexNameLength,
@@ -27,7 +27,10 @@ export function Register() {
         regexPasswordNumber: false,
         regexPasswordUppercase: false,
         regexPasswordSpecial: false,
+        
     })
+
+    const [matchPasswordRegister, setMatchPasswordRegister] = useState(false)
 
     const nameRegister = (nameInput: React.ChangeEvent<HTMLInputElement>) => {
         setValidateNameRegister({
@@ -54,6 +57,24 @@ export function Register() {
         console.log(passwordInput.target.value)
     }
 
+    // const matchPassword = (matchPasswordInput: React.ChangeEvent<HTMLInputElement>) =>{
+    //     const value = matchPasswordInput.target.value
+    //     setMatchPasswordRegister({
+    //         if(value == setValidatePasswordRegister){
+    //             matchPasswordRegister(true)
+    //         }
+    //     })
+    // }
+
+
+    useEffect(() => {
+        validatePasswordRegister != matchPasswordRegister
+            setMatchPasswordRegister(true)
+        }
+    })
+    
+
+    
     
 
     //const [matchPassword, setMatchPassword] = useState("")
