@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useRef } from "react"
 
 import {
     regexNameLength,
@@ -11,9 +11,12 @@ import {
 
 import notRed from "../../assets/not-red.svg";
 import checkGreen from "../../assets/check-green.svg";
-import { Password } from "phosphor-react";
 
 export function Register() {
+
+    const refPassword = useRef("")
+    const refConfirmPassword = useRef("")
+
     const[validateNameRegister, setValidateNameRegister] = useState({
         regexNameLength:false,
     })
@@ -42,6 +45,7 @@ export function Register() {
         setValidateEmailRegister({
             regexEmail: regexEmail.test(emailInput.target.value),
         })
+
     }
 
     const passwordRegister = (passwordInput: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,32 +58,22 @@ export function Register() {
             regexPasswordSpecial: regexPasswordSpecial.test(passwordInput.target.value),
         })
 
-        console.log(passwordInput.target.value)
+
+        refPassword.current = passwordInput.target.value
     }
 
-    // const matchPassword = (matchPasswordInput: React.ChangeEvent<HTMLInputElement>) =>{
-    //     const value = matchPasswordInput.target.value
-    //     setMatchPasswordRegister({
-    //         if(value == setValidatePasswordRegister){
-    //             matchPasswordRegister(true)
-    //         }
-    //     })
-    // }
+    const matchPasswordInput = (match: React.ChangeEvent<HTMLInputElement>) => {
+        refConfirmPassword.current = match.target.value
 
-
-    useEffect(() => {
-        validatePasswordRegister != matchPasswordRegister
+        if(refPassword === refConfirmPassword){
             setMatchPasswordRegister(true)
         }
-    })
+
+        console.log(matchPasswordRegister)
+
+    }
     
-
-    
-    
-
-    //const [matchPassword, setMatchPassword] = useState("")
-
-
+   
 
     return (
         <div className="flex flex-col items-center">
@@ -108,8 +102,8 @@ export function Register() {
                     <input
                         type="password"
                         placeholder="Confirm Password"
-                        onChange={(matchPasswordInput) => passwordRegister(matchPasswordInput)}
-                        className="block peer rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5"/>
+                        onChange={(match) => matchPasswordInput(match)}
+                        className={`block peer rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5 ${Object.values(matchPasswordRegister).map(mapMatchPasswordRegister => mapMatchPasswordRegister == false ? "focus:outline-none focus:border-pink-500 focus:ring-pink-500 text-pink-600 focus-ring-1" : "")}`}/>
 
                     <button className="rounded-full bg-[#3D5FD9] text-[#F5F7FF] w-[25rem] p-3 hover:bg-[#2347C5] mb-5">SIGN UP</button>
 
