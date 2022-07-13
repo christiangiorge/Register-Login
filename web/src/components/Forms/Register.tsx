@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 
 import {
     regexNameLength,
@@ -13,10 +13,6 @@ import notRed from "../../assets/not-red.svg";
 import checkGreen from "../../assets/check-green.svg";
 
 export function Register() {
-
-    const refPassword = useRef("")
-    const refConfirmPassword = useRef("")
-
     const[validateNameRegister, setValidateNameRegister] = useState({
         regexNameLength:false,
     })
@@ -33,7 +29,15 @@ export function Register() {
         
     })
 
-    const [matchPasswordRegister, setMatchPasswordRegister] = useState(false)
+    const matchPassword = useRef() as React.MutableRefObject<HTMLInputElement>;
+    const matchConfirmPassword = useRef() as React.MutableRefObject<HTMLInputElement>;
+    const [confirmPasswordClass, setConfirmPasswordClass] = useState('form-control');
+    const [errorMatchPassword, setErrorMatchPassword] = useState(false)
+    const [confirmPasswordDirty, setConfirmPasswordDirty] = useState(false)
+    const [buttonDisabled, setButtonDisabled] = useState(false)
+   
+
+    
 
     const nameRegister = (nameInput: React.ChangeEvent<HTMLInputElement>) => {
         setValidateNameRegister({
@@ -58,20 +62,38 @@ export function Register() {
             regexPasswordSpecial: regexPasswordSpecial.test(passwordInput.target.value),
         })
 
-
-        refPassword.current = passwordInput.target.value
     }
 
-    const matchPasswordInput = (match: React.ChangeEvent<HTMLInputElement>) => {
-        refConfirmPassword.current = match.target.value
-
-        if(refPassword === refConfirmPassword){
-            setMatchPasswordRegister(true)
+    useEffect(() => {
+        if(confirmPasswordDirty){
+            if(matchPassword.current.value === matchConfirmPassword.current.value){
+                setErrorMatchPassword(false)
+                setConfirmPasswordClass('block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5')
+            } else{
+                setErrorMatchPassword(true)
+                setConfirmPasswordClass('block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5 focus:border-pink-500 focus:ring-pink-500 text-pink-600 focus-ring-1')
+            }
         }
+    },[confirmPasswordDirty])
 
-        console.log(matchPasswordRegister)
+  
 
+    const matchPasswordInput = (confirmPassword: React.ChangeEvent<HTMLInputElement>) => {
+        setConfirmPasswordDirty(true)
+        if(confirmPasswordDirty){
+            if(matchPassword.current.value === matchConfirmPassword.current.value){
+                setErrorMatchPassword(false)
+                setConfirmPasswordClass('block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5')
+            } else{
+                setErrorMatchPassword(true)
+                setConfirmPasswordClass('block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5 focus:border-pink-500 focus:ring-pink-500 text-pink-600 focus-ring-1')
+            }
+        }
     }
+
+    useEffect(() => {
+        setButtonDisabled(false)
+    }, [validateNameRegister])
     
    
 
@@ -84,28 +106,38 @@ export function Register() {
                     <input 
                         type="text"
                         placeholder="Your Name Complete"
+                        required
                         onChange={(nameInput) => nameRegister(nameInput)}
                         className={`block peer rounded-[5px] border-[#AEBBCD] w-[25rem] mb-5 focus:outline-none focus:ring-1 ${Object.values(validateNameRegister).map(mapValidateNameBoolean => mapValidateNameBoolean == false ? "focus:outline-none focus:border-pink-500 focus:ring-pink-500 text-pink-600 focus-ring-1" : "")}`}/>
 
                     <input
                         type="email"
                         placeholder="Confirm your Email ID"
+                        required
                         onChange={(emailInput) => emailRegister(emailInput)}
                         className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5 ${Object.values(validateEmailRegister).map(mapValidateEmailBoolean => mapValidateEmailBoolean == false ? "focus:outline-none focus:border-pink-500 focus:ring-pink-500 text-pink-600 focus-ring-1" : "")}`}/>
 
                     <input 
                         type="password"
                         placeholder="New Password"
+                        required
+                        ref={matchPassword}
                         onChange={(passwordInput) => passwordRegister(passwordInput)}
                         className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5 ${Object.values(validatePasswordRegister).map(mapValidatePasswordBoolean => mapValidatePasswordBoolean == false ? "focus:outline-none focus:border-pink-500 focus:ring-pink-500 text-pink-600 focus-ring-1" : "")}`}/>
                     
                     <input
                         type="password"
                         placeholder="Confirm Password"
-                        onChange={(match) => matchPasswordInput(match)}
-                        className={`block peer rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5 ${Object.values(matchPasswordRegister).map(mapMatchPasswordRegister => mapMatchPasswordRegister == false ? "focus:outline-none focus:border-pink-500 focus:ring-pink-500 text-pink-600 focus-ring-1" : "")}`}/>
+                        required
+                        ref={matchConfirmPassword}
+                        onChange={matchPasswordInput}
+                        className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5 ${confirmPasswordClass}`}/>
 
-                    <button className="rounded-full bg-[#3D5FD9] text-[#F5F7FF] w-[25rem] p-3 hover:bg-[#2347C5] mb-5">SIGN UP</button>
+                    <button 
+                        disabled={buttonDisabled} 
+                        className="rounded-full bg-[#3D5FD9] text-[#F5F7FF] w-[25rem] p-3 hover:bg-[#2347C5] mb-5">
+                            SIGN UP
+                    </button>
 
                     <p className="text-[#5473E3] mb-5">Already have an account ? < a href="#" className="hover:text-[#2347C5] hover">Sign in</a></p>
                 
