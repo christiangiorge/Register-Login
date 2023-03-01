@@ -12,7 +12,7 @@ import {
 import notRed from "../../assets/not-red.svg";
 import checkGreen from "../../assets/check-green.svg";
 
-export function Register() {
+export function SignUp() {
     const[validateNameRegister, setValidateNameRegister] = useState({
         regexNameLength:false,
     })

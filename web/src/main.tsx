@@ -9,20 +9,28 @@ import App from './App'
 
 import './global.css';
 
-import { Register } from './components/Forms/Register';
-import Error from './components/RouterError';
+import AllowedAccess from './components/AllowedAccess';
+import RouterError from './components/RouterError';
 import { SignIn } from './components/Forms/SignIn';
+import { SignUp } from './components/Forms/SignUp';
+
+
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Register />,
-    errorElement: <Error />,
+    element: <AllowedAccess />,
+    errorElement: <RouterError />,
   },
   {
     path: "/signin",
     element: <SignIn />,
-  }
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
+  },
+  
   
 ]);
 

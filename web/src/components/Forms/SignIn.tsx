@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 
 import {
     regexEmail,
@@ -17,9 +17,9 @@ export function SignIn() {
     }
    
     return (
-        <div className="min-h-screen">
+        <div className="">
             <label>
-                <form className="min-h-screen flex flex-col justify-center items-center outline-none bg-black">
+                <form className="flex h-[calc(100vh-95px)] flex-col justify-center items-center outline-none">
 
                     <input
                         type="email"
@@ -39,7 +39,7 @@ export function SignIn() {
                         className="rounded-full bg-[#3D5FD9] text-[#F5F7FF] w-[25rem] p-3 hover:bg-[#2347C5] mb-5">
                            SIGN IN
                     </button>
-
+                    
                     <p className="text-[#5473E3] mb-5">Don't have an account ? < a href="#" className="hover:text-[#2347C5] hover">Sign up</a></p>
                 
                 </form>
