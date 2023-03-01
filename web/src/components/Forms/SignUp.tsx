@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react"
+import { Link } from "react-router-dom";
 
 import {
     regexNameLength,
@@ -138,8 +139,10 @@ export function SignUp() {
                         className="rounded-full bg-[#3D5FD9] text-[#F5F7FF] w-[25rem] p-3 hover:bg-[#2347C5] mb-5">
                             SIGN UP
                     </button>
-
-                    <p className="text-[#5473E3] mb-5">Already have an account ? < a href="#" className="hover:text-[#2347C5] hover">Sign in</a></p>
+                    
+                    <Link to="/signin" className="hover:text-[#2347C5] hover:underline">
+                        <p className="text-[#5473E3] mb-5">Already have an account ? Sign in</p>
+                    </Link>
                 
                 
                 </form>

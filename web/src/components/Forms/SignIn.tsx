@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import {
     regexEmail,
@@ -35,12 +36,15 @@ export function SignIn() {
                         className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5`}/>
 
                     <button 
-                        
                         className="rounded-full bg-[#3D5FD9] text-[#F5F7FF] w-[25rem] p-3 hover:bg-[#2347C5] mb-5">
                            SIGN IN
                     </button>
                     
-                    <p className="text-[#5473E3] mb-5">Don't have an account ? < a href="#" className="hover:text-[#2347C5] hover">Sign up</a></p>
+                    <Link to="/signup" className="hover:text-[#2347C5] hover:underline">
+                        <p className="text-[#5473E3] mb-5">Don't have an account ? Sign up</p>
+                    </Link>
+                   
+                    
                 
                 </form>
             </label>
