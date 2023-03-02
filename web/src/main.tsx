@@ -19,12 +19,12 @@ import { SignUp } from './components/Forms/SignUp';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AllowedAccess />,
-    errorElement: <RouterError />,
+    element: <SignIn />,
   },
   {
-    path: "/signin",
-    element: <SignIn />,
+    path: "/u",
+    element: <AllowedAccess />,
+    errorElement: <RouterError />,
   },
   {
     path: "/signup",

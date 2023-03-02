@@ -92,9 +92,7 @@ export function SignUp() {
         }
     }
 
-    useEffect(() => {
-        setButtonDisabled(false)
-    }, [validateNameRegister])
+    
     
    
 
@@ -132,15 +130,16 @@ export function SignUp() {
                         required
                         ref={matchConfirmPassword}
                         onChange={matchPasswordInput}
-                        className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5 ${confirmPasswordClass}`}/>
+                        className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5 ${confirmPasswordClass}`}
+                        />
 
                     <button 
-                        disabled={buttonDisabled} 
+                        //disabled={buttonDisabled} 
                         className="rounded-full bg-[#3D5FD9] text-[#F5F7FF] w-[25rem] p-3 hover:bg-[#2347C5] mb-5">
                             SIGN UP
                     </button>
                     
-                    <Link to="/signin" className="hover:text-[#2347C5] hover:underline">
+                    <Link to="/" className="hover:text-[#2347C5] hover:underline">
                         <p className="text-[#5473E3] mb-5">Already have an account ? Sign in</p>
                     </Link>
                 
