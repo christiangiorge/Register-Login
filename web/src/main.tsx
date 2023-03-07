@@ -13,6 +13,7 @@ import AllowedAccess from './components/AllowedAccess';
 import RouterError from './components/RouterError';
 import { SignIn } from './components/Forms/SignIn';
 import { SignUp } from './components/Forms/SignUp';
+import Registered from './components/Registered';
 
 
 
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <SignUp />,
   },
+  {
+    path: "/registered",
+    element: <Registered/>
+  }
   
   
 ]);
