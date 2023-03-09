@@ -93,7 +93,7 @@ export function SignUp() {
                 
                 
                 </form>
-                {/* <form className="flex flex-col items-center outline-none">
+                <form className="flex flex-col items-center outline-none">
                     <input 
                         type="text"
                         placeholder="Your Name Complete"
@@ -126,9 +126,9 @@ export function SignUp() {
                     </Link>
                 
                 
-                </form> */}
+                </form> 
                 
-                {/* <div className="text-[#6D7989] w-[25rem]" >
+                <div className="text-[#6D7989] w-[25rem]" >
                     
                     <label className="text-[#404B5A]">Senha deve conter:</label>
                     
@@ -153,7 +153,7 @@ export function SignUp() {
                         <p className="inline-block">Pelo menos um caracter especial;</p>
                     </div>
                 
-                </div> */}
+                </div>
                 
 
                 
