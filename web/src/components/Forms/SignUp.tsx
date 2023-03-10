@@ -132,7 +132,7 @@ export function SignUp() {
                     
                     <label className="text-[#404B5A]">Senha deve conter:</label>
                     
-                    <div className="mt-2 ">
+                    {/* <div className="mt-2 ">
                         <img  src={validatePasswordRegister.regexPasswordLength ? checkGreen : notRed} className="inline-block mr-2" />
                         <p className="inline-block">Minímo 8 caracteres;</p>
                     </div>
@@ -151,7 +151,7 @@ export function SignUp() {
                     <div>
                         <img src={validatePasswordRegister.regexPasswordSpecial ? checkGreen : notRed} className="inline-block mr-2"/>
                         <p className="inline-block">Pelo menos um caracter especial;</p>
-                    </div>
+                    </div> */}
                 
                 </div>
                 
