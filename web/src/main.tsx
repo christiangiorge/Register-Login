@@ -12,7 +12,7 @@ import './global.css';
 import AllowedAccess from './components/AllowedAccess';
 import RouterError from './components/RouterError';
 import { SignIn } from './components/Forms/SignIn';
-import { SignUp } from './components/Forms/SignUp';
+import SignUp from './components/Forms/SignUp';
 import Registered from './components/Registered';
 
 

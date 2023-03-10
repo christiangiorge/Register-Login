@@ -1,8 +1,37 @@
+// import { useForm } from "react-hook-form";
+// import { yupResolver } from '@hookform/resolvers/yup';
+// import * as yup from "yup";
+
+// const schema = yup.object({
+//   firstName: yup.string().required(),
+//   age: yup.number().positive().integer().required(),
+// }).required();
+// type FormData = yup.InferType<typeof schema>;
+
+// export default function SignUp() {
+//   const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+//     resolver: yupResolver(schema)
+//   });
+//   const onSubmit = (data: FormData) => console.log(data);
+
+//   return (
+//     <form onSubmit={handleSubmit(onSubmit)}>
+//       <input {...register("firstName")} />
+//       <p>{errors.firstName?.message}</p>
+        
+//       <input {...register("age")} />
+//       <p>{errors.age?.message}</p>
+      
+//       <input type="submit" />
+//     </form>
+//   );
+// }
+
 import React, { useState, useRef, useEffect, HTMLInputTypeAttribute } from "react"
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Link, HistoryRouterProps} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import regex from '../../utils/regex';
 
@@ -29,7 +58,7 @@ const schema = yup.object({
 type FormData = yup.InferType<typeof schema>;
 
 
-export function SignUp() {
+export default function SignUp() {
     const { register, 
             handleSubmit : onSubmit,
             watch,
@@ -50,14 +79,16 @@ export function SignUp() {
             <label>
                 <form onSubmit={onSubmit(handleSubmit)} className="flex flex-col items-center outline-none">
                     <input 
-                        {...register("name")}
+                        {...register("name")} aria-invalid={errors.name ? "true" : "false"}
+                        type="text"
                         placeholder="Your Name Complete"
                         className={`block peer rounded-[5px] border-[#AEBBCD] w-[25rem] mb-5 focus:outline-none focus:ring-1`}
                         />
-                        <span>{errors.name?.message}</span>
+                        <p>{errors.name?.message}</p>
 
                     <input
                         {...register("email")}
+                        type="email"
                         placeholder="Confirm your Email ID"
                         className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5`}
                         />
@@ -65,6 +96,7 @@ export function SignUp() {
 
                     <input 
                         {...register("password")}
+                        type="password"
                         placeholder="New Password"
                         className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5`}
                         />
@@ -76,11 +108,8 @@ export function SignUp() {
                         className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5`}
                         /> */}
 
-                    
-                    
                         <button 
-                            //disabled={buttonDisabled} 
-                            type="button"
+                            type="submit"
                             className={`rounded-full bg-[#3D5FD9] text-[#F5F7FF] w-[25rem] p-3 hover:bg-[#2347C5] mb-5`}
                             onClick={onHandleSubmit}
                             >
@@ -90,10 +119,11 @@ export function SignUp() {
                     <Link to="/" className="hover:text-[#2347C5] hover:underline">
                         <p className="text-[#5473E3] mb-5">Already have an account ? Sign in</p>
                     </Link>
-                
+            
                 
                 </form>
-                <form className="flex flex-col items-center outline-none">
+                
+                {/* <form className="flex flex-col items-center outline-none">
                     <input 
                         type="text"
                         placeholder="Your Name Complete"
@@ -132,7 +162,7 @@ export function SignUp() {
                     
                     <label className="text-[#404B5A]">Senha deve conter:</label>
                     
-                    {/* <div className="mt-2 ">
+                    <div className="mt-2 ">
                         <img  src={validatePasswordRegister.regexPasswordLength ? checkGreen : notRed} className="inline-block mr-2" />
                         <p className="inline-block">Minímo 8 caracteres;</p>
                     </div>
@@ -151,9 +181,9 @@ export function SignUp() {
                     <div>
                         <img src={validatePasswordRegister.regexPasswordSpecial ? checkGreen : notRed} className="inline-block mr-2"/>
                         <p className="inline-block">Pelo menos um caracter especial;</p>
-                    </div> */}
+                    </div>
                 
-                </div>
+                </div> */}
                 
 
                 
@@ -163,3 +193,5 @@ export function SignUp() {
         </div>   
     )
 }
+
+
