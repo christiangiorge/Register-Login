@@ -75,123 +75,78 @@ export default function SignUp() {
     return (
         <div className="flex flex-col items-center">
 
+            <form onSubmit={onSubmit(handleSubmit)} className="flex flex-col items-center outline-none">
+                <input 
+                    {...register("name")} aria-invalid={errors.name ? "true" : "false"}
+                    type="text"
+                    placeholder="Your Name Complete"
+                    className={`block peer rounded-[5px] border-[#AEBBCD] w-[25rem] mb-5 focus:outline-none focus:ring-1`}
+                   />
+                    <p>{errors.name?.message}</p>
 
-            <label>
-                <form onSubmit={onSubmit(handleSubmit)} className="flex flex-col items-center outline-none">
-                    <input 
-                        {...register("name")} aria-invalid={errors.name ? "true" : "false"}
-                        type="text"
-                        placeholder="Your Name Complete"
-                        className={`block peer rounded-[5px] border-[#AEBBCD] w-[25rem] mb-5 focus:outline-none focus:ring-1`}
-                        />
-                        <p>{errors.name?.message}</p>
+                <input
+                    {...register("email")}
+                    type="email"
+                    placeholder="Confirm your Email ID"
+                    className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5`}
+                    />
+                    <span>{errors.email?.message}</span>
 
-                    <input
-                        {...register("email")}
-                        type="email"
-                        placeholder="Confirm your Email ID"
-                        className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5`}
-                        />
-                        <span>{errors.email?.message}</span>
-
-                    <input 
-                        {...register("password")}
-                        type="password"
-                        placeholder="New Password"
-                        className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5`}
-                        />
-                        <span>{errors.password?.message}</span>
+                <input 
+                    {...register("password")}
+                    type="password"
+                    placeholder="New Password"
+                    className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5`}
+                    />
+                    <span>{errors.password?.message}</span>
                     
-                    {/* <input
-                        type="password"
-                        placeholder="Confirm Password"
-                        className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5`}
-                        /> */}
+                {/* <input
+                    type="password"
+                    placeholder="Confirm Password"
+                    className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5`}
+                    /> */}
 
-                        <button 
-                            type="submit"
-                            className={`rounded-full bg-[#3D5FD9] text-[#F5F7FF] w-[25rem] p-3 hover:bg-[#2347C5] mb-5`}
-                            onClick={onHandleSubmit}
-                            >
-                                SIGN UP      
-                        </button>
+                <button 
+                    type="submit"
+                    className={`rounded-full bg-[#3D5FD9] text-[#F5F7FF] w-[25rem] p-3 hover:bg-[#2347C5] mb-5`}
+                    onClick={onHandleSubmit}
+                    >
+                    SIGN UP      
+                </button>
                     
-                    <Link to="/" className="hover:text-[#2347C5] hover:underline">
-                        <p className="text-[#5473E3] mb-5">Already have an account ? Sign in</p>
-                    </Link>
+                <Link to="/" className="hover:text-[#2347C5] hover:underline">
+                    <p className="text-[#5473E3] mb-5">Already have an account ? Sign in</p>
+                </Link>
             
                 
-                </form>
-                
-                {/* <form className="flex flex-col items-center outline-none">
-                    <input 
-                        type="text"
-                        placeholder="Your Name Complete"
-                        className={`block peer rounded-[5px] border-[#AEBBCD] w-[25rem] mb-5 focus:outline-none focus:ring-1 ${Object.values(validateNameRegister).map(mapValidateNameBoolean => mapValidateNameBoolean == false ? "focus:outline-none focus:border-pink-500 focus:ring-pink-500 text-pink-600 focus-ring-1" : "")}`}/>
+            </form>
 
-                    <input
-                        type="email"
-                        placeholder="Confirm your Email ID"
-                        className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5 ${Object.values(validateEmailRegister).map(mapValidateEmailBoolean => mapValidateEmailBoolean == false ? "focus:outline-none focus:border-pink-500 focus:ring-pink-500 text-pink-600 focus-ring-1" : "")}`}/>
-
-                    <input 
-                        type="password"
-                        placeholder="New Password"
-                        className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5 ${Object.values(validatePasswordRegister).map(mapValidatePasswordBoolean => mapValidatePasswordBoolean == false ? "focus:outline-none focus:border-pink-500 focus:ring-pink-500 text-pink-600 focus-ring-1" : "")}`}/>
+        <div className="text-[#6D7989] w-[25rem]" >
                     
-                    <input
-                        type="password"
-                        placeholder="Confirm Password"
-                        className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5 ${confirmPasswordClass}`}
-                        />
-
-                    <button 
-                        //disabled={buttonDisabled} 
-                        className="rounded-full bg-[#3D5FD9] text-[#F5F7FF] w-[25rem] p-3 hover:bg-[#2347C5] mb-5">
-                            SIGN UP
-                    </button>
+            <label className="text-[#404B5A]">Senha deve conter:</label>
                     
-                    <Link to="/" className="hover:text-[#2347C5] hover:underline">
-                        <p className="text-[#5473E3] mb-5">Already have an account ? Sign in</p>
-                    </Link>
+            <div className="mt-2 ">
+                <img  src={errors.password?.message || "" ? notRed : checkGreen} className="inline-block mr-2" />
+                <p className="inline-block">Minímo 8 caracteres;</p>
+            </div>
                 
-                
-                </form> 
-                
-                <div className="text-[#6D7989] w-[25rem]" >
+            <div>
+                <img src={ errors.password?.message ? notRed : checkGreen } className="inline-block mr-2"/>
+                <p className="inline-block">Pelo menos um número;</p>
+            </div>
                     
-                    <label className="text-[#404B5A]">Senha deve conter:</label>
+           <div>
+                <img src={ errors.password?.message ? notRed : checkGreen } className="inline-block mr-2"/>
+                <p className="inline-block">Pelo menos uma letra maiuscula;</p>
+            </div>
                     
-                    <div className="mt-2 ">
-                        <img  src={validatePasswordRegister.regexPasswordLength ? checkGreen : notRed} className="inline-block mr-2" />
-                        <p className="inline-block">Minímo 8 caracteres;</p>
-                    </div>
-                    
-                    <div>
-                        <img src={validatePasswordRegister.regexPasswordNumber ? checkGreen : notRed } className="inline-block mr-2"/>
-                        <p className="inline-block">Pelo menos um número;</p>
-                        
-                    </div>
-                        
-                    <div>
-                        <img src={validatePasswordRegister.regexPasswordUppercase ? checkGreen : notRed} className="inline-block mr-2"/>
-                        <p className="inline-block">Pelo menos uma letra maiuscula;</p>
-                    </div>
-                    
-                    <div>
-                        <img src={validatePasswordRegister.regexPasswordSpecial ? checkGreen : notRed} className="inline-block mr-2"/>
-                        <p className="inline-block">Pelo menos um caracter especial;</p>
-                    </div>
-                
-                </div> */}
-                
-
-                
-            </label>
-
+            <div>
+                <img src={ errors.password?.message ? notRed : checkGreen } className="inline-block mr-2"/>
+                <p className="inline-block">Pelo menos um caracter especial;</p>
+            </div>
+        </div>
             
-        </div>   
+        </div>
+
     )
 }
-
-
