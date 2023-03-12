@@ -29,6 +29,7 @@
 
 import React, { useState, useRef, useEffect, HTMLInputTypeAttribute } from "react"
 import { useForm } from "react-hook-form";
+import { ErrorMessage } from '@hookform/error-message';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
@@ -39,6 +40,12 @@ import notRed from "../../assets/not-red.svg";
 import checkGreen from "../../assets/check-green.svg";
 import { Password } from "phosphor-react";
 
+type ICreateUserData = {
+    name: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+}
 
 const schema = yup.object({
     name: yup.string()
@@ -53,17 +60,19 @@ const schema = yup.object({
         .matches(regex.number, "Insira pelo menos 1 número")
         .matches(regex.lowerCase, "Insira pelo menos 1 caracter minúsculo")
         .matches(regex.upperCase, "Insira pelo menos 1 caracter maiúsculo")
-        .matches(regex.specialCharacter, "Insira pelo menos 1 caracter especial.")
+        .matches(regex.specialCharacter, "Insira pelo menos 1 caracter especial."),
+    confirmPassword: yup.string()
+        .required("O campo confirmar senha é obrigatório.")
+        .oneOf([yup.ref("password")], "As senhas não são iguais.")
+    
 })
-type FormData = yup.InferType<typeof schema>;
-
 
 export default function SignUp() {
     const { register, 
             handleSubmit : onSubmit,
             watch,
             formState: { errors }
-        } = useForm<FormData>({resolver: yupResolver(schema)});
+        } = useForm<ICreateUserData>({resolver: yupResolver(schema)});
 
     const handleSubmit = (data: any) => console.log(data);
 
@@ -97,14 +106,15 @@ export default function SignUp() {
                     type="password"
                     placeholder="New Password"
                     className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5`}
-                    />
-                    <span>{errors.password?.message}</span>
-                    
-                {/* <input
+                />
+
+                <input
+                    {...register("confirmPassword")}
                     type="password"
                     placeholder="Confirm Password"
                     className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5`}
-                    /> */}
+                    />
+                    <span>{errors.confirmPassword?.message}</span>
 
                 <button 
                     type="submit"
@@ -126,7 +136,7 @@ export default function SignUp() {
             <label className="text-[#404B5A]">Senha deve conter:</label>
                     
             <div className="mt-2 ">
-                <img  src={errors.password?.message || "" ? notRed : checkGreen} className="inline-block mr-2" />
+                <img  src={errors.password?.message ? notRed : checkGreen} className="inline-block mr-2" />
                 <p className="inline-block">Minímo 8 caracteres;</p>
             </div>
                 
