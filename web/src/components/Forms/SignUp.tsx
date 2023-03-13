@@ -70,6 +70,7 @@ const schema = yup.object({
 export default function SignUp() {
     const { register, 
             handleSubmit : onSubmit,
+            setError,
             watch,
             formState: { errors }
         } = useForm<ICreateUserData>({resolver: yupResolver(schema)});
@@ -79,19 +80,27 @@ export default function SignUp() {
     const onHandleSubmit = () => {
         console.log("Click")
     }
-   
 
+    const name = register("name")
+    
     return (
         <div className="flex flex-col items-center">
 
             <form onSubmit={onSubmit(handleSubmit)} className="flex flex-col items-center outline-none">
                 <input 
-                    {...register("name")} aria-invalid={errors.name ? "true" : "false"}
+                    {...register("name")}
                     type="text"
+                    onChange={(event) => {
+                        name.onChange(event);
+                        setError("name", {
+                            type: "manual",
+                            message: errors.name?.message,
+                        });
+                    } }
                     placeholder="Your Name Complete"
                     className={`block peer rounded-[5px] border-[#AEBBCD] w-[25rem] mb-5 focus:outline-none focus:ring-1`}
                    />
-                    <p>{errors.name?.message}</p>
+                    {errors.name && <p>{errors.name.message}</p>}
 
                 <input
                     {...register("email")}
