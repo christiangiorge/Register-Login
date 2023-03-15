@@ -94,11 +94,11 @@ export default function SignUp() {
                         name.onChange(event);
                         setError("name", {
                             type: "manual",
-                            message: errors.name?.message,
+                            message: "O campo nome precisa conter pelo menos 3 caracteres.",
                         });
                     } }
                     placeholder="Your Name Complete"
-                    className={`block peer rounded-[5px] border-[#AEBBCD] w-[25rem] mb-5 focus:outline-none focus:ring-1`}
+                    className={ errors.name ? "block peer rounded-[5px] w-[25rem] mb-5 border-[#C93B32] focus:outline-none focus:border-[#C93B32]  focus:ring-1 focus:ring-[#C93B32]" : "block peer rounded-[5px] border-[#AEBBCD] w-[25rem] mb-5 focus:outline-none focus:ring-1"}
                    />
                     {errors.name && <p>{errors.name.message}</p>}
 
@@ -159,10 +159,10 @@ export default function SignUp() {
                 <p className="inline-block">Pelo menos uma letra maiuscula;</p>
             </div>
                     
-            {/* <div>
+            <div>
                 <img src={ errors.password?.message ? notRed : checkGreen } className="inline-block mr-2"/>
                 <p className="inline-block">Pelo menos um caracter especial;</p>
-            </div> */}
+            </div>
         </div>
             
         </div>
