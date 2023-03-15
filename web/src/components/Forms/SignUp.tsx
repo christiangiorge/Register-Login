@@ -159,10 +159,10 @@ export default function SignUp() {
                 <p className="inline-block">Pelo menos uma letra maiuscula;</p>
             </div>
                     
-            <div>
+            {/* <div>
                 <img src={ errors.password?.message ? notRed : checkGreen } className="inline-block mr-2"/>
                 <p className="inline-block">Pelo menos um caracter especial;</p>
-            </div>
+            </div> */}
         </div>
             
         </div>
