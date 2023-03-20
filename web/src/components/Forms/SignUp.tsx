@@ -32,7 +32,7 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from '@hookform/error-message';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import regex from '../../utils/regex';
 
@@ -68,6 +68,8 @@ const schema = yup.object({
 })
 
 export default function SignUp() {
+    const navigate = useNavigate()
+
     const { register, 
             handleSubmit : onSubmit,
             setError,
@@ -75,9 +77,12 @@ export default function SignUp() {
             formState: { errors }
         } = useForm<ICreateUserData>({resolver: yupResolver(schema)});
 
-    const handleSubmit = (data: any) => console.log(data);
-
+    const handleSubmit = (data: any) => {
+        navigate("/registered")
+        console.log(data);
+    }
     const onHandleSubmit = () => {
+        
         console.log("Click")
     }
 
@@ -90,17 +95,11 @@ export default function SignUp() {
                 <input 
                     {...register("name")}
                     type="text"
-                    onChange={(event) => {
-                        name.onChange(event);
-                        setError("name", {
-                            type: "manual",
-                            message: "O campo nome precisa conter pelo menos 3 caracteres.",
-                        });
-                    } }
+                
                     placeholder="Your Name Complete"
                     className={ errors.name ? "block peer rounded-[5px] w-[25rem] mb-5 border-[#C93B32] focus:outline-none focus:border-[#C93B32]  focus:ring-1 focus:ring-[#C93B32]" : "block peer rounded-[5px] border-[#AEBBCD] w-[25rem] mb-5 focus:outline-none focus:ring-1"}
                    />
-                    {errors.name && <p>{errors.name.message}</p>}
+                    {errors.name && <p>{errors.name?.message}</p>}
 
                 <input
                     {...register("email")}
@@ -115,7 +114,8 @@ export default function SignUp() {
                     type="password"
                     placeholder="New Password"
                     className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5`}
-                />
+                    />
+                    <span>{errors.password?.message}</span>
 
                 <input
                     {...register("confirmPassword")}
@@ -124,13 +124,14 @@ export default function SignUp() {
                     className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5`}
                     />
                     <span>{errors.confirmPassword?.message}</span>
-
-                <button 
+                    
+                <button
                     type="submit"
                     className={`rounded-full bg-[#3D5FD9] text-[#F5F7FF] w-[25rem] p-3 hover:bg-[#2347C5] mb-5`}
                     onClick={onHandleSubmit}
                     >
-                    SIGN UP      
+                    SIGN UP
+                          
                 </button>
                     
                 <Link to="/" className="hover:text-[#2347C5] hover:underline">
