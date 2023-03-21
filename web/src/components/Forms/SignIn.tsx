@@ -1,46 +1,76 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-export function SignIn() {
 
-    const[validateEmailRegister, setValidateEmailRegister] = useState({
-        regexEmail: false,
+    type ICreateUserData = {
+        email: string;
+        password: string;
+    }
+    
+    const schema = yup.object({
+        email: yup.string().required("O campo email é obrigatório.").email("Insira um e-mail válido"),
+        password: yup.string().required("O campo senha é obrigatório.")
     })
-   
+    
+export default function SignIn() {
+
+    const navigate = useNavigate()
+    
+    const { register, 
+        handleSubmit : onSubmit,
+        setError,
+        watch,
+        formState: { errors }
+        } = useForm<ICreateUserData>({resolver: yupResolver(schema)});
+    
+    const handleSubmit = (data: any) => {
+        navigate("/u")
+        console.log(data);
+    }
+    const onHandleSubmit = () => {
+       console.log("Click")
+    }
+        
     return (
-        <div className="">
-            <label>
-                <form className="flex h-[calc(100vh-95px)] flex-col justify-center items-center outline-none">
+        <div className="flex flex-col items-center">
+    
+        <form onSubmit={onSubmit(handleSubmit)} className="flex h-[calc(100vh-95px)] flex-col justify-center items-center outline-none">
+    
+        <input
+            {...register("email")}
+            type="email"
+            placeholder="Email"
+            className={ errors.email ? "block peer rounded-[5px] w-[25rem]  mt-5 border-[#C93B32] focus:outline-none focus:border-[#C93B32]  focus:ring-1 focus:ring-[#C93B32]" : "block peer rounded-[5px] border-[#AEBBCD] w-[25rem] mt-5 focus:outline-none focus:ring-1"}
+            />
+        <span className="place-self-start text-[14px] text-[#C93B32]">
+            {errors.email?.message}
+        </span>
+    
+        <input 
+            {...register("password")}
+            type="password"
+            placeholder="Senha"
+            className={ errors.password ? "block peer rounded-[5px] w-[25rem] mt-5 border-[#C93B32] focus:outline-none focus:border-[#C93B32]  focus:ring-1 focus:ring-[#C93B32]" : "block peer rounded-[5px] border-[#AEBBCD] w-[25rem] mt-5 focus:outline-none focus:ring-1"}
+            />
+        <span className="place-self-start text-[14px] text-[#C93B32]">
+            {errors.password?.message}
+        </span>
+                        
+        <button
+            type="submit"
+            className={`rounded-full bg-[#3D5FD9] text-[#F5F7FF] w-[25rem] p-3 mt-5 hover:bg-[#2347C5] mb-5`}
+            onClick={onHandleSubmit}
+            >
+            SIGN IN
+            </button>
 
-                    {/* <input
-                        type="email"
-                        placeholder="Email ID"
-                        className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5 ${Object.values(validateEmailRegister).map(mapValidateEmailBoolean => mapValidateEmailBoolean == false ? "focus:outline-none focus:border-pink-500 focus:ring-pink-500 text-pink-600 focus-ring-1" : "")}`}/> */}
-
-                    <input
-                        type="email"
-                        placeholder="Email ID"/>
-
-
-                     <input 
-                        type="password"
-                        placeholder="Password"
-                        required
-                        className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5`}/>
-
-                    <button 
-                        className="rounded-full bg-[#3D5FD9] text-[#F5F7FF] w-[25rem] p-3 hover:bg-[#2347C5] mb-5">
-                           SIGN IN
-                    </button>
-                    
-                    <Link to="/signup" className="hover:text-[#2347C5] hover:underline">
-                        <p className="text-[#5473E3] mb-5">Don't have an account ? Sign up</p>
-                    </Link>
-                   
-                    
-                
-                </form>
-            </label>
+            <Link to="/signup" className="hover:text-[#2347C5] hover:underline">
+                <p className="text-[#5473E3] mb-5">Don't have an account ? Sign up</p>
+            </Link>
+        </form>
         </div>
           
     )

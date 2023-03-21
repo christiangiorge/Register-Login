@@ -95,39 +95,46 @@ export default function SignUp() {
                 <input 
                     {...register("name")}
                     type="text"
-                
-                    placeholder="Your Name Complete"
-                    className={ errors.name ? "block peer rounded-[5px] w-[25rem] mb-5 border-[#C93B32] focus:outline-none focus:border-[#C93B32]  focus:ring-1 focus:ring-[#C93B32]" : "block peer rounded-[5px] border-[#AEBBCD] w-[25rem] mb-5 focus:outline-none focus:ring-1"}
+                    placeholder="Nome completo"
+                    className={ errors.name ? "block peer rounded-[5px] w-[25rem] border-[#C93B32] focus:outline-none focus:border-[#C93B32]  focus:ring-1 focus:ring-[#C93B32]" : "block peer rounded-[5px] border-[#AEBBCD] w-[25rem] focus:outline-none focus:ring-1"}
                    />
-                    {errors.name && <p>{errors.name?.message}</p>}
+                <span className="place-self-start text-[14px] text-[#C93B32]">
+                    {errors.name?.message}
+                </span>
 
                 <input
                     {...register("email")}
                     type="email"
-                    placeholder="Confirm your Email ID"
-                    className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5`}
+                    placeholder="Email"
+                    className={ errors.email ? "block peer rounded-[5px] w-[25rem]  mt-5 border-[#C93B32] focus:outline-none focus:border-[#C93B32]  focus:ring-1 focus:ring-[#C93B32]" : "block peer rounded-[5px] border-[#AEBBCD] w-[25rem] mt-5 focus:outline-none focus:ring-1"}
                     />
-                    <span>{errors.email?.message}</span>
+                <span className="place-self-start text-[14px] text-[#C93B32]">
+                    {errors.email?.message}
+                </span>
 
                 <input 
                     {...register("password")}
                     type="password"
-                    placeholder="New Password"
-                    className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5`}
+                    placeholder="Senha"
+                    className={ errors.password ? "block peer rounded-[5px] w-[25rem] mt-5 border-[#C93B32] focus:outline-none focus:border-[#C93B32]  focus:ring-1 focus:ring-[#C93B32]" : "block peer rounded-[5px] border-[#AEBBCD] w-[25rem] mt-5 focus:outline-none focus:ring-1"}
                     />
-                    <span>{errors.password?.message}</span>
+                <span className="place-self-start text-[14px] text-[#C93B32]">
+                    {errors.password?.message}
+                </span>
 
                 <input
                     {...register("confirmPassword")}
                     type="password"
-                    placeholder="Confirm Password"
-                    className={`block rounded-[5px] border-[#AEBBCD] focus:outline-none w-[25rem] mb-5`}
+                    placeholder="Confirme sua senha"
+                    className={ errors.confirmPassword ? "block peer rounded-[5px] w-[25rem] mt-5 border-[#C93B32] focus:outline-none focus:border-[#C93B32]  focus:ring-1 focus:ring-[#C93B32]" : "block peer rounded-[5px] border-[#AEBBCD] w-[25rem] mt-5 focus:outline-none focus:ring-1"}
                     />
-                    <span>{errors.confirmPassword?.message}</span>
+                <span className="place-self-start text-[14px] text-[#C93B32]">
+                    {errors.confirmPassword?.message}
+                </span>
                     
                 <button
                     type="submit"
-                    className={`rounded-full bg-[#3D5FD9] text-[#F5F7FF] w-[25rem] p-3 hover:bg-[#2347C5] mb-5`}
+                    className={`rounded-full bg-[#3D5FD9] text-[#F5F7FF] w-[25rem] p-3 mt-5 hover:bg-[#2347C5] mb-5`}
                     onClick={onHandleSubmit}
                     >
                     SIGN UP

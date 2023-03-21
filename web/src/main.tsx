@@ -11,7 +11,7 @@ import './global.css';
 
 import AllowedAccess from './components/AllowedAccess';
 import RouterError from './components/RouterError';
-import { SignIn } from './components/Forms/SignIn';
+import SignIn from './components/Forms/SignIn';
 import SignUp from './components/Forms/SignUp';
 import Registered from './components/Registered';
 
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
     path: "/registered",
     element: <Registered/>,
     errorElement: <RouterError />,
-  }
+  },
   
   
 ]);
