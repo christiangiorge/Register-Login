@@ -14,7 +14,9 @@ import RouterError from './components/RouterError';
 import SignIn from './components/Forms/SignIn';
 import SignUp from './components/Forms/SignUp';
 import Registered from './components/Registered';
-
+import ForgotPassword from './components/Forms/ForgotPassword';
+import ChangePassword from './components/Forms/ChangePassword';
+import ChangePasswordReady from './components/ChangePasswordReady';
 
 
 const router = createBrowserRouter([
@@ -35,6 +37,21 @@ const router = createBrowserRouter([
   {
     path: "/registered",
     element: <Registered/>,
+    errorElement: <RouterError />,
+  },
+  {
+    path: "/forgotpassword",
+    element: <ForgotPassword/>,
+    errorElement: <RouterError />,
+  },
+  {
+    path: "/changepassword",
+    element: <ChangePassword/>,
+    errorElement: <RouterError />,
+  },
+  {
+    path: "/changepasswordready",
+    element: <ChangePasswordReady/>,
     errorElement: <RouterError />,
   },
   

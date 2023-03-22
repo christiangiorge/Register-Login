@@ -10,7 +10,7 @@ export default function Registered() {
   }
   return (
     <div className="flex flex-col items-center">
-      <p className="text-base text-[#5473E3]">Welcome! You are registered</p>
+      <p className="text-base text-[#5473E3]">Your password has been updated!</p>
       <button 
         type="submit"
         className={`rounded-full bg-[#3D5FD9] text-[#F5F7FF] w-[25rem] p-3 mt-5 hover:bg-[#2347C5] mb-5`}

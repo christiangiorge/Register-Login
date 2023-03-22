@@ -1,25 +1,17 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import regex from '../../utils/regex';
 import notRed from "../../assets/not-red.svg";
 import checkGreen from "../../assets/check-green.svg";
 
 type ICreateUserData = {
-    name: string;
-    email: string;
     password: string;
     confirmPassword: string;
 }
 
 const schema = yup.object({
-    name: yup.string()
-        .required("O campo nome é obrigatório.")
-        .min(3, "O campo nome precisa conter pelo menos 3 caracteres."),
-    email: yup.string()
-        .required("O campo email é obrigatório.")
-        .email("Insira um e-mail válido"),
     password: yup.string()
         .required("O campo senha é obrigatório.")
         .min(8, "Insira uma senha de pelo menos 8 caracteres.")
@@ -33,7 +25,7 @@ const schema = yup.object({
     
 })
 
-export default function SignUp() {
+export default function ChangePassword() {
     const navigate = useNavigate()
 
     const { register, 
@@ -44,40 +36,20 @@ export default function SignUp() {
         } = useForm<ICreateUserData>({resolver: yupResolver(schema)});
 
     const handleSubmit = (data: any) => {
-        navigate("/registered")
+        navigate("/changepasswordready")
         console.log(data);
     }
     const onHandleSubmit = () => {
         
         console.log("Click")
     }
-
-    const name = register("name")
     
     return (
         <div className="flex flex-col items-center">
 
             <form onSubmit={onSubmit(handleSubmit)} className="flex flex-col items-center outline-none">
-                <input 
-                    {...register("name")}
-                    type="text"
-                    placeholder="Nome completo"
-                    className={ errors.name ? "block peer rounded-[5px] w-[25rem] border-[#C93B32] focus:outline-none focus:border-[#C93B32]  focus:ring-1 focus:ring-[#C93B32]" : "block peer rounded-[5px] border-[#AEBBCD] w-[25rem] focus:outline-none focus:ring-1"}
-                   />
-                <span className="place-self-start text-[14px] text-[#C93B32]">
-                    {errors.name?.message}
-                </span>
-
-                <input
-                    {...register("email")}
-                    type="email"
-                    placeholder="Email"
-                    className={ errors.email ? "block peer rounded-[5px] w-[25rem]  mt-5 border-[#C93B32] focus:outline-none focus:border-[#C93B32]  focus:ring-1 focus:ring-[#C93B32]" : "block peer rounded-[5px] border-[#AEBBCD] w-[25rem] mt-5 focus:outline-none focus:ring-1"}
-                    />
-                <span className="place-self-start text-[14px] text-[#C93B32]">
-                    {errors.email?.message}
-                </span>
-
+                <p className="place-self-start font-semibold text-base text-[#5473E3]">Change your password</p>
+                
                 <input 
                     {...register("password")}
                     type="password"
@@ -103,13 +75,8 @@ export default function SignUp() {
                     className={`rounded-full bg-[#3D5FD9] text-[#F5F7FF] w-[25rem] p-3 mt-5 hover:bg-[#2347C5] mb-5`}
                     onClick={onHandleSubmit}
                     >
-                    SIGN UP
-                          
+                    CHANGE 
                 </button>
-                    
-                <Link to="/" className="hover:text-[#2347C5] hover:underline">
-                    <p className="text-[#5473E3] mb-5">Already have an account ? Sign in</p>
-                </Link>
             
                 
             </form>
