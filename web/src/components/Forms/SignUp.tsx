@@ -58,11 +58,12 @@ export default function SignUp() {
         <div className="flex flex-col items-center">
 
             <form onSubmit={onSubmit(handleSubmit)} className="flex flex-col items-center outline-none">
+            <p className="place-self-start font-semibold text-base text-[#5473E3]">Register to the system</p>
                 <input 
                     {...register("name")}
                     type="text"
                     placeholder="Nome completo"
-                    className={ errors.name ? "block peer rounded-[5px] w-[25rem] border-[#C93B32] focus:outline-none focus:border-[#C93B32]  focus:ring-1 focus:ring-[#C93B32]" : "block peer rounded-[5px] border-[#AEBBCD] w-[25rem] focus:outline-none focus:ring-1"}
+                    className={ errors.name ? "block peer rounded-[5px] w-[25rem] mt-5 border-[#C93B32] focus:outline-none focus:border-[#C93B32]  focus:ring-1 focus:ring-[#C93B32]" : "block peer rounded-[5px] mt-5 border-[#AEBBCD] w-[25rem] focus:outline-none focus:ring-1"}
                    />
                 <span className="place-self-start text-[14px] text-[#C93B32]">
                     {errors.name?.message}

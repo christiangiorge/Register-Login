@@ -45,7 +45,7 @@ export default function ChangePassword() {
     }
     
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex h-[calc(100vh-95px)] flex-col py-[20vh] items-center">
 
             <form onSubmit={onSubmit(handleSubmit)} className="flex flex-col items-center outline-none">
                 <p className="place-self-start font-semibold text-base text-[#5473E3]">Change your password</p>

@@ -5,9 +5,8 @@ export default function AllowedAccess() {
   console.error(error);
 
   return (
-    <div >
-      <p>Welcome! Allowed Access</p>
-      
+    <div className="flex flex-col items-center py-[30vh]">
+      <p className="text-base text-[#5473E3]">Welcome! Allowed Access</p>
     </div>
   );
 }

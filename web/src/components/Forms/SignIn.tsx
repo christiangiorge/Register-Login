@@ -35,9 +35,13 @@ export default function SignIn() {
         
     return (
         <div className="flex flex-col items-center">
+
+
     
         <form onSubmit={onSubmit(handleSubmit)} className="flex h-[calc(100vh-95px)] flex-col justify-center items-center outline-none">
-    
+        
+        <p className="place-self-start font-semibold text-base text-[#5473E3]">Login to the system</p>
+        
         <input
             {...register("email")}
             type="email"

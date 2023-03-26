@@ -9,7 +9,8 @@ export default function Registered() {
     navigate("/")
   }
   return (
-    <div className="flex flex-col items-center">
+
+    <div className="flex flex-col items-center py-[30vh]">
       <p className="text-base text-[#5473E3]">Your password has been updated!</p>
       <button 
         type="submit"
