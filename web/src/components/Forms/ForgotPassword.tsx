@@ -25,7 +25,7 @@ export default function ForgotPassword() {
     
     const handleSubmit = (data: any) => {
         console.log(data);
-        navigate("/verifycode")
+        navigate("/changepassword")
     }
     const onHandleSubmit = () => {
        console.log("Click")

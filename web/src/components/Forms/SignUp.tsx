@@ -15,21 +15,21 @@ type ICreateUserData = {
 
 const schema = yup.object({
     name: yup.string()
-        .required("O campo nome é obrigatório.")
-        .min(3, "O campo nome precisa conter pelo menos 3 caracteres."),
+        .required("The name field is required.")
+        .min(3, "The name field must contain at least 3 characters."),
     email: yup.string()
-        .required("O campo email é obrigatório.")
-        .email("Insira um e-mail válido"),
+        .required("Email field is required.")
+        .email("Please enter a valid e-mail."),
     password: yup.string()
-        .required("O campo senha é obrigatório.")
-        .min(8, "Insira uma senha de pelo menos 8 caracteres.")
-        .matches(regex.number, "Insira pelo menos 1 número")
-        .matches(regex.lowerCase, "Insira pelo menos 1 caracter minúsculo")
-        .matches(regex.upperCase, "Insira pelo menos 1 caracter maiúsculo")
-        .matches(regex.specialCharacter, "Insira pelo menos 1 caracter especial."),
+        .required("Password field is required.")
+        .min(8, "Enter a password of at least 8 characters.")
+        .matches(regex.number, "Enter at least 1 number.")
+        .matches(regex.lowerCase, "Enter at least 1 lowercase character.")
+        .matches(regex.upperCase, "Enter at least 1 uppercase character.")
+        .matches(regex.specialCharacter, "Enter at least 1 special character."),
     confirmPassword: yup.string()
-        .required("O campo confirmar senha é obrigatório.")
-        .oneOf([yup.ref("password")], "As senhas não são iguais.")
+        .required("The confirm password field is required.")
+        .oneOf([yup.ref("password")], "Passwords are not the same.")
     
 })
 
@@ -38,8 +38,6 @@ export default function SignUp() {
 
     const { register, 
             handleSubmit : onSubmit,
-            setError,
-            watch,
             formState: { errors }
         } = useForm<ICreateUserData>({resolver: yupResolver(schema)});
 
@@ -115,30 +113,35 @@ export default function SignUp() {
                 
             </form>
 
-        <div className="text-[#6D7989] w-[25rem]" >
+            <div className="text-[#6D7989] w-[25rem]" >
                     
-            <label className="text-[#404B5A]">Senha deve conter:</label>
-                    
-            <div className="mt-2 ">
-                <img  src={errors.password?.message ? notRed : checkGreen} className="inline-block mr-2" />
-                <p className="inline-block">Minímo 8 caracteres;</p>
+                <label className="text-[#404B5A]">Senha deve conter:</label>
+                            
+                <div className="mt-2 ">
+                    <img  src={errors.password?.message ? notRed : checkGreen} className="inline-block mr-2" />
+                    <p className="inline-block">Enter a password of at least 8 characters;</p>
+                </div>
+                        
+                <div>
+                    <img src={ errors.password?.message ? notRed : checkGreen } className="inline-block mr-2"/>
+                    <p className="inline-block">Enter at least 1 number;</p>
+                </div>
+                            
+                <div>
+                    <img src={ errors.password?.message ? notRed : checkGreen } className="inline-block mr-2"/>
+                    <p className="inline-block">Enter at least 1 lowercase character;</p>
+                </div>
+        
+                <div>
+                    <img src={ errors.password?.message ? notRed : checkGreen } className="inline-block mr-2"/>
+                    <p className="inline-block">Enter at least 1 uppercase character;</p>
+                </div>
+                            
+                <div>
+                    <img src={ errors.password?.message ? notRed : checkGreen } className="inline-block mr-2"/>
+                    <p className="inline-block">Enter at least 1 special character;</p>
+                </div>
             </div>
-                
-            <div>
-                <img src={ errors.password?.message ? notRed : checkGreen } className="inline-block mr-2"/>
-                <p className="inline-block">Pelo menos um número;</p>
-            </div>
-                    
-           <div>
-                <img src={ errors.password?.message ? notRed : checkGreen } className="inline-block mr-2"/>
-                <p className="inline-block">Pelo menos uma letra maiuscula;</p>
-            </div>
-                    
-            <div>
-                <img src={ errors.password?.message ? notRed : checkGreen } className="inline-block mr-2"/>
-                <p className="inline-block">Pelo menos um caracter especial;</p>
-            </div>
-        </div>
             
         </div>
 

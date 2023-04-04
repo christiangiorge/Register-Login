@@ -17,7 +17,6 @@ import Registered from './components/Registered';
 import ForgotPassword from './components/Forms/ForgotPassword';
 import ChangePassword from './components/Forms/ChangePassword';
 import ChangePasswordReady from './components/ChangePasswordReady';
-import CodeVerify from './components/Forms/CodeVerify';
 
 
 const router = createBrowserRouter([
@@ -53,11 +52,6 @@ const router = createBrowserRouter([
   {
     path: "/changepasswordready",
     element: <ChangePasswordReady/>,
-    errorElement: <RouterError />,
-  },
-  {
-    path: "/codeverify",
-    element: <CodeVerify/>,
     errorElement: <RouterError />,
   },
   
