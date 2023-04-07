@@ -19,9 +19,9 @@ const schema = yup.object({
         .matches(regex.lowerCase, "Enter at least 1 lowercase character.")
         .matches(regex.upperCase, "Enter at least 1 uppercase character.")
         .matches(regex.specialCharacter, "Enter at least 1 special character."),
-    // confirmPassword: yup.string()
-    //     .required("The confirm password field is required.")
-    //     .oneOf([yup.ref("password")], "Passwords are not the same.")
+    confirmPassword: yup.string()
+        .required("The confirm password field is required.")
+        .oneOf([yup.ref("password")], "Passwords are not the same.")
         
 })
 
