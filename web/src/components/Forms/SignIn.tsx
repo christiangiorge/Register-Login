@@ -55,7 +55,7 @@ export default function SignIn() {
         <input 
             {...register("password")}
             type="password"
-            placeholder="Senha"
+            placeholder="Password"
             className={ errors.password ? "block peer rounded-[5px] w-[25rem] mt-5 border-[#C93B32] focus:outline-none focus:border-[#C93B32]  focus:ring-1 focus:ring-[#C93B32]" : "block peer rounded-[5px] border-[#AEBBCD] w-[25rem] mt-5 focus:outline-none focus:ring-1"}
             />
         <span className="place-self-start text-[14px] text-[#C93B32]">
@@ -73,9 +73,9 @@ export default function SignIn() {
             SIGN IN
             </button>
 
-            <Link to="/signup" className="hover:text-[#2347C5] hover:underline">
+{/*             <Link to="/signup" className="hover:text-[#2347C5] hover:underline">
                 <p className="text-[#5473E3] mb-5">Don't have an account? Sign up</p>
-            </Link>
+            </Link> */}
         </form>
         </div>
           

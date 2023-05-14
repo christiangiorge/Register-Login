@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-    @apply bg-[#F8F9FA];
-}
+    background:url(./assets/background.jpg);
+} 
