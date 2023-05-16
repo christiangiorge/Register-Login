@@ -9,7 +9,6 @@ import App from './App'
 
 import './global.css';
 
-/* import AllowedAccess from './components/AllowedAccess'; */
 
 import AllowedAccess from './components/AllowedAccess';
 
